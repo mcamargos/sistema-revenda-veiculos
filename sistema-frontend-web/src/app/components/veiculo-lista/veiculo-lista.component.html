@@ -25,9 +25,9 @@
       <td>{{ veiculo.placa }}</td>
       <td>{{ veiculo.status }}</td>
       <td>
-        <button>Detalhes</button>
-        <button>Editar</button>
-        <button>Excluir</button>
+        <button [routerLink]="['/veiculos', veiculo.id]">Detalhes</button>
+        <button (click)="onEdit(veiculo.id)">Editar</button>
+        <button (click)="onDelete(veiculo.id!)">Excluir</button>
       </td>
     </tr>
     <tr *ngIf="veiculos.length === 0">

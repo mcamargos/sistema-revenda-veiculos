@@ -1,0 +1,141 @@
+<h2>{{ isEditMode ? 'Editar Veículo' : 'Cadastrar Novo Veículo' }}</h2>
+
+<form [formGroup]="veiculoForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="marca">Marca:</label>
+    <select id="marca" formControlName="marca">
+      <option value="">Selecione a Marca</option>
+      <option value="Audi">Audi</option>
+      <option value="BMW">BMW</option>
+      <option value="Caoa Chery">Caoa Chery</option>
+      <option value="Chevrolet">Chevrolet</option>
+      <option value="Citroën">Citroën</option>
+      <option value="Fiat">Fiat</option>
+      <option value="Ford">Ford</option>
+      <option value="Honda">Honda</option>
+      <option value="Hyundai">Hyundai</option>
+      <option value="Jeep">Jeep</option>
+      <option value="Kia">Kia</option>
+      <option value="Land Rover">Land Rover</option>
+      <option value="Mercedes-Benz">Mercedes-Benz</option>
+      <option value="Mitsubishi">Mitsubishi</option>
+      <option value="Nissan">Nissan</option>
+      <option value="Peugeot">Peugeot</option>
+      <option value="Porsche">Porsche</option>
+      <option value="Renault">Renault</option>
+      <option value="Subaru">Subaru</option>
+      <option value="Suzuki">Suzuki</option>
+      <option value="Tesla">Tesla</option>
+      <option value="Toyota">Toyota</option>
+      <option value="Volkswagen">Volkswagen</option>
+      <option value="Volvo">Volvo</option>
+      <option value="Outra">Outra</option>
+    </select>
+    <div *ngIf="veiculoForm.get('marca')?.invalid && veiculoForm.get('marca')?.touched" class="error-message">
+      Marca é obrigatória.
+    </div>
+  </div>
+
+  <div>
+    <label for="modelo">Modelo:</label>
+    <input id="modelo" type="text" formControlName="modelo">
+    <div *ngIf="veiculoForm.get('modelo')?.invalid && veiculoForm.get('modelo')?.touched" class="error-message">
+      Modelo é obrigatório.
+    </div>
+  </div>
+
+  <div>
+    <label for="ano">Ano:</label>
+    <select id="ano" formControlName="ano">
+      <option value="">Selecione o Ano</option>
+      <option *ngFor="let ano of anos" [value]="ano">{{ ano }}</option>
+    </select>
+    <div *ngIf="veiculoForm.get('ano')?.invalid && veiculoForm.get('ano')?.touched" class="error-message">
+      Ano é obrigatório e deve ser um número válido.
+    </div>
+  </div>
+
+  <div>
+    <label for="cor">Cor:</label>
+    <input id="cor" type="text" formControlName="cor">
+    <div *ngIf="veiculoForm.get('cor')?.invalid && veiculoForm.get('cor')?.touched" class="error-message">
+      Cor é obrigatória.
+    </div>
+  </div>
+
+  <div>
+    <label for="preco">Preço:</label>
+    <input id="preco" type="number" formControlName="preco">
+    <div *ngIf="veiculoForm.get('preco')?.invalid && veiculoForm.get('preco')?.touched" class="error-message">
+      Preço é obrigatório e deve ser um número maior ou igual a zero.
+    </div>
+  </div>
+
+  <div>
+    <label for="quilometragem">Quilometragem:</label>
+    <input id="quilometragem" type="number" formControlName="quilometragem">
+    <div *ngIf="veiculoForm.get('quilometragem')?.invalid && veiculoForm.get('quilometragem')?.touched" class="error-message">
+      Quilometragem é obrigatória e deve ser um número maior ou igual a zero.
+    </div>
+  </div>
+
+  <div>
+    <label for="tipoCombustivel">Combustível:</label>
+    <select id="tipoCombustivel" formControlName="tipoCombustivel">
+      <option value="">Selecione o Combustível</option>
+      <option value="Gasolina">Gasolina</option>
+      <option value="Etanol">Etanol</option>
+      <option value="Flex">Flex</option>
+      <option value="Diesel">Diesel</option>
+      <option value="Elétrico">Elétrico</option>
+      <option value="Híbrido">Híbrido</option>
+    </select>
+    <div *ngIf="veiculoForm.get('tipoCombustivel')?.invalid && veiculoForm.get('tipoCombustivel')?.touched" class="error-message">
+      Tipo de Combustível é obrigatório.
+    </div>
+  </div>
+
+  <div>
+    <label for="cambio">Câmbio:</label>
+    <select id="cambio" formControlName="cambio">
+      <option value="">Selecione o Câmbio</option>
+      <option value="Manual">Manual</option>
+      <option value="Automático">Automático</option>
+      <option value="Automatizado">Automatizado</option>
+      <option value="CVT">CVT</option>
+    </select>
+    <div *ngIf="veiculoForm.get('cambio')?.invalid && veiculoForm.get('cambio')?.touched" class="error-message">
+      Câmbio é obrigatório.
+    </div>
+  </div>
+
+  <div>
+    <label for="placa">Placa:</label>
+    <input id="placa" type="text" formControlName="placa">
+    <div *ngIf="veiculoForm.get('placa')?.invalid && veiculoForm.get('placa')?.touched" class="error-message">
+      Placa é obrigatória e deve seguir o padrão Mercosul (ex: ABC1D23).
+    </div>
+  </div>
+
+  <div>
+    <label for="status">Status:</label>
+    <select id="status" formControlName="status">
+      <option value="">Selecione um status</option>
+      <option value="Disponível">Disponível</option>
+      <option value="Vendido">Vendido</option>
+      <option value="Reservado">Reservado</option>
+      <option value="Manutenção">Manutenção</option>
+    </select>
+    <div *ngIf="veiculoForm.get('status')?.invalid && veiculoForm.get('status')?.touched" class="error-message">
+      Status é obrigatório.
+    </div>
+  </div>
+
+  <div>
+    <label for="descricao">Descrição:</label>
+    <textarea id="descricao" formControlName="descricao"></textarea>
+  </div>
+
+  <button type="submit" [disabled]="veiculoForm.invalid">Salvar Veículo</button>
+  <button type="button" (click)="router.navigate(['/veiculos'])">Cancelar</button>
+</form>

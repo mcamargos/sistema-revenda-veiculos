@@ -1,5 +1,9 @@
+<nav>
+  <a routerLink="/veiculos">Lista de Veículos</a> |
+  <a routerLink="/veiculos/novo">Cadastrar Novo Veículo</a>
+</nav>
+
 <main>
-  <h1>Sistema de Revenda de Veículos</h1>
-  <app-veiculo-lista></app-veiculo-lista>
+  <h1>{{ title }}</h1>
   <router-outlet></router-outlet>
 </main>

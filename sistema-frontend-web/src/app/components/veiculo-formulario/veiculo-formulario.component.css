@@ -1,0 +1,42 @@
+.error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+  }
+  div {
+    margin-bottom: 15px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que padding e border não aumentam a largura total */
+  }
+  button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+  }
+  button[type="submit"]:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  button[type="button"] {
+    background-color: #6c757d;
+    color: white;
+  }

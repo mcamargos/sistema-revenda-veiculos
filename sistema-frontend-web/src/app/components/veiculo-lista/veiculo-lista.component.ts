@@ -1,32 +1,62 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importe CommonModule para usar ngFor
-import { Veiculo, VeiculoService } from '../../services/veiculo.service'; // Importe o serviço e a interface Veiculo
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router'; // Necessário para usar routerLink no template
+import { Veiculo, VeiculoService } from '../../services/veiculo.service';
+import { Router } from '@angular/router'; // Importe o Router para navegação programática
 
 @Component({
   selector: 'app-veiculo-lista',
-  standalone: true, // Indica que é um componente standalone
-  imports: [CommonModule], // Adicione CommonModule aqui
-  templateUrl: './veiculo-lista.component.html', // Caminho para o HTML
-  styleUrl: './veiculo-lista.component.css'   // Caminho para o CSS
+  standalone: true,
+  imports: [CommonModule, RouterLink], // MANTENHA RouterLink AQUI pois é usado no HTML nos botões Detalhes/Editar
+  templateUrl: './veiculo-lista.component.html',
+  styleUrl: './veiculo-lista.component.css'
 })
 export class VeiculoListaComponent implements OnInit {
-  veiculos: Veiculo[] = []; // Array para armazenar os veículos
+  veiculos: Veiculo[] = [];
 
-  constructor(private veiculoService: VeiculoService) { } // Injeta o serviço
+  constructor(
+    private veiculoService: VeiculoService,
+    private router: Router // Injeta o Router
+  ) { }
 
   ngOnInit(): void {
-    this.carregarVeiculos(); // Carrega os veículos quando o componente é inicializado
+    this.carregarVeiculos();
   }
 
   carregarVeiculos(): void {
     this.veiculoService.getVeiculos().subscribe(
       (data) => {
-        this.veiculos = data; // Atribui os dados recebidos ao array de veículos
+        this.veiculos = data;
       },
       (error) => {
         console.error('Erro ao carregar veículos:', error);
-        // Implemente um tratamento de erro mais amigável aqui (ex: exibir mensagem para o usuário)
+        alert('Erro ao carregar veículos. Verifique o console do navegador e o backend.');
       }
     );
+  }
+
+  // Método para navegar para a tela de edição
+  onEdit(id: number | undefined): void {
+    if (id) {
+      this.router.navigate(['/veiculos/editar', id]);
+    } else {
+      alert('ID do veículo não encontrado para edição.');
+    }
+  }
+
+  // Método para lidar com a exclusão de um veículo
+  onDelete(id: number | undefined): void {
+    if (id && confirm('Tem certeza que deseja excluir este veículo?')) {
+      this.veiculoService.deleteVeiculo(id).subscribe(
+        () => {
+          alert('Veículo excluído com sucesso!');
+          this.carregarVeiculos(); // Recarrega a lista para mostrar as mudanças
+        },
+        (error) => {
+          console.error('Erro ao excluir veículo:', error);
+          alert('Erro ao excluir veículo. Verifique o console.');
+        }
+      );
+    }
   }
 }
