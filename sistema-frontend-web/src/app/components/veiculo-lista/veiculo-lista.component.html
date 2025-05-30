@@ -1,0 +1,37 @@
+<h2>Lista de Veículos</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Ano</th>
+      <th>Cor</th>
+      <th>Preço</th>
+      <th>Placa</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let veiculo of veiculos">
+      <td>{{ veiculo.id }}</td>
+      <td>{{ veiculo.marca }}</td>
+      <td>{{ veiculo.modelo }}</td>
+      <td>{{ veiculo.ano }}</td>
+      <td>{{ veiculo.cor }}</td>
+      <td>{{ veiculo.preco | currency:'BRL':'symbol':'1.2-2' }}</td>
+      <td>{{ veiculo.placa }}</td>
+      <td>{{ veiculo.status }}</td>
+      <td>
+        <button>Detalhes</button>
+        <button>Editar</button>
+        <button>Excluir</button>
+      </td>
+    </tr>
+    <tr *ngIf="veiculos.length === 0">
+        <td colspan="9">Nenhum veículo encontrado.</td>
+    </tr>
+  </tbody>
+</table>

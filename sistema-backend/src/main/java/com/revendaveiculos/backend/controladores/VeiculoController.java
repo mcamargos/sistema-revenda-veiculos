@@ -12,6 +12,8 @@ import java.util.Optional;
 
 @RestController // Indica que esta classe é um controlador REST
 @RequestMapping("/api/veiculos") // Define o endpoint base para todas as operações neste controlador
+@CrossOrigin(origins = "http://localhost:4200") 
+
 public class VeiculoController {
 
     @Autowired // Injeta uma instância do VeiculoRepository (Spring Data JPA)
