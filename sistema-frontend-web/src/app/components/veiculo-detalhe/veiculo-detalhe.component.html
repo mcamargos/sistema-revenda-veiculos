@@ -1,0 +1,22 @@
+<div *ngIf="veiculo">
+    <h2>Detalhes do Veículo: {{ veiculo.marca }} {{ veiculo.modelo }}</h2>
+    
+    <p><strong>ID:</strong> {{ veiculo.id }}</p>
+    <p><strong>Marca:</strong> {{ veiculo.marca }}</p>
+    <p><strong>Modelo:</strong> {{ veiculo.modelo }}</p>
+    <p><strong>Ano:</strong> {{ veiculo.ano }}</p>
+    <p><strong>Cor:</strong> {{ veiculo.cor }}</p>
+    <p><strong>Preço:</strong> {{ veiculo.preco | currency:'BRL':'symbol':'1.2-2' }}</p>
+    <p><strong>Quilometragem:</strong> {{ veiculo.quilometragem }} km</p>
+    <p><strong>Tipo de Combustível:</strong> {{ veiculo.tipoCombustivel }}</p>
+    <p><strong>Câmbio:</strong> {{ veiculo.cambio }}</p>
+    <p><strong>Placa:</strong> {{ veiculo.placa }}</p>
+    <p><strong>Status:</strong> {{ veiculo.status }}</p>
+    <p><strong>Descrição:</strong> {{ veiculo.descricao }}</p>
+  
+    <button (click)="onBack()">Voltar para a Lista</button>
+  </div>
+  
+  <div *ngIf="!veiculo">
+    <p>Carregando detalhes do veículo...</p>
+  </div>
