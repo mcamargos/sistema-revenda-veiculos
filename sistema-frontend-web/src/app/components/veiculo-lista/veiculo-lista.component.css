@@ -1,67 +1,18 @@
-.veiculos-card {
-    margin: 20px 0; 
-    padding: 0; 
-  }
-  
-  .mat-card-header {
-    padding: 16px; 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
-    margin-bottom: 0; 
-  }
-  
-  .mat-card-title {
-    font-size: 1.5em; 
-    font-weight: 500;
-    color: var(--mdc-theme-on-surface);
-  }
-  
-  .mat-card-content {
-    padding: 16px; 
-  }
-  
-  .table-container {
+table {
     width: 100%;
-    overflow-x: auto; 
+    border-collapse: collapse;
+    margin-top: 20px;
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse; 
-  }
-  
-  th.mat-header-cell, td.mat-cell {
-    padding: 8px 16px; 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
     text-align: left;
   }
-  
-  th.mat-header-cell {
-    font-weight: bold;
-    color: var(--mdc-theme-on-surface); 
-    background-color: var(--mdc-theme-primary-container); 
+  th {
+    background-color: #f2f2f2;
   }
-  
-  td.mat-cell {
-    color: var(--mdc-theme-on-surface);
-  }
-  
-  .no-data-message {
-    text-align: center;
-    padding: 20px;
-    color: #777;
-    font-style: italic;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-    margin-top: 10px;
-  }
-  
-  td.mat-cell button {
-    min-width: unset; 
-    padding: 0 8px; 
-  }
-  
-  .mat-icon-button mat-icon {
-    font-size: 20px; 
-    height: 20px;
-    width: 20px;
+  button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
   }

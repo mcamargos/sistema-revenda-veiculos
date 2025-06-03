@@ -1,49 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router'; // Necessário para usar routerLink no template
 import { Veiculo, VeiculoService } from '../../services/veiculo.service';
-import { Router } from '@angular/router';
-
-// IMPORTS DO ANGULAR MATERIAL
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { Router } from '@angular/router'; // Importe o Router para navegação programática
 
 @Component({
   selector: 'app-veiculo-lista',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterLink,
-    MatTableModule,
-    MatButtonModule,
-    MatCardModule,
-    MatIconModule,
-    MatTooltipModule
-  ],
+  imports: [CommonModule, RouterLink], // MANTENHA RouterLink AQUI pois é usado no HTML nos botões Detalhes/Editar
   templateUrl: './veiculo-lista.component.html',
   styleUrl: './veiculo-lista.component.css'
 })
 export class VeiculoListaComponent implements OnInit {
   veiculos: Veiculo[] = [];
 
-  displayedColumns: string[] = [
-    'id',
-    'marca',
-    'modelo',
-    'ano',
-    'cor',
-    'preco',
-    'placa',
-    'status',
-    'acoes'
-  ];
-
   constructor(
     private veiculoService: VeiculoService,
-    private router: Router
+    private router: Router // Injeta o Router
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +35,7 @@ export class VeiculoListaComponent implements OnInit {
     );
   }
 
+  // Método para navegar para a tela de edição
   onEdit(id: number | undefined): void {
     if (id) {
       this.router.navigate(['/veiculos/editar', id]);
@@ -70,12 +44,13 @@ export class VeiculoListaComponent implements OnInit {
     }
   }
 
+  // Método para lidar com a exclusão de um veículo
   onDelete(id: number | undefined): void {
     if (id && confirm('Tem certeza que deseja excluir este veículo?')) {
       this.veiculoService.deleteVeiculo(id).subscribe(
         () => {
           alert('Veículo excluído com sucesso!');
-          this.carregarVeiculos();
+          this.carregarVeiculos(); // Recarrega a lista para mostrar as mudanças
         },
         (error) => {
           console.error('Erro ao excluir veículo:', error);

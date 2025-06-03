@@ -29,19 +29,25 @@ export class VeiculoService {
     return this.http.get<Veiculo[]>(this.apiUrl);
   }
 
+  // >>>>>>>>>>>>> LINHA CORRIGIDA AQUI <<<<<<<<<<<<<
   getVeiculoById(id: number): Observable<Veiculo> {
+    // A string da URL deve ser delimitada por CRASES (`) e a variável interpolada por ${}
     return this.http.get<Veiculo>(`${this.apiUrl}/${id}`);
   }
-
+  
   createVeiculo(veiculo: Veiculo): Observable<Veiculo> {
     return this.http.post<Veiculo>(this.apiUrl, veiculo);
   }
-
+  
+  // >>>>>>>>>>>>> LINHA CORRIGIDA AQUI <<<<<<<<<<<<<
   updateVeiculo(id: number, veiculo: Veiculo): Observable<Veiculo> {
+    // A string da URL deve ser delimitada por CRASES (`) e a variável interpolada por ${}
     return this.http.put<Veiculo>(`${this.apiUrl}/${id}`, veiculo);
   }
-
+  
+  // >>>>>>>>>>>>> LINHA CORRIGIDA AQUI <<<<<<<<<<<<<
   deleteVeiculo(id: number): Observable<void> {
+    // A string da URL deve ser delimitada por CRASES (`) e a variável interpolada por ${}
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

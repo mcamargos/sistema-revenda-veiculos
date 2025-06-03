@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController 
-@RequestMapping("/api/veiculos") 
+@RestController // Indica que esta classe é um controlador REST
+@RequestMapping("/api/veiculos") // Define o endpoint base para todas as operações neste controlador
 @CrossOrigin(origins = "http://localhost:4200") 
 
 public class VeiculoController {

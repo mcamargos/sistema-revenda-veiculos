@@ -1,149 +1,141 @@
-<mat-card class="veiculo-form-card">
-  <mat-card-header>
-    <mat-card-title>{{ isEditMode ? 'Editar Veículo' : 'Cadastrar Novo Veículo' }}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="veiculoForm" (ngSubmit)="onSubmit()" class="form-grid">
-      
-      <mat-form-field appearance="outline">
-        <mat-label>Marca</mat-label>
-        <mat-select formControlName="marca">
-          <mat-option value="">Selecione a Marca</mat-option>
-          <mat-option value="Audi">Audi</mat-option>
-          <mat-option value="BMW">BMW</mat-option>
-          <mat-option value="Caoa Chery">Caoa Chery</mat-option>
-          <mat-option value="Chevrolet">Chevrolet</mat-option>
-          <mat-option value="Citroën">Citroën</mat-option>
-          <mat-option value="Fiat">Fiat</mat-option>
-          <mat-option value="Ford">Ford</mat-option>
-          <mat-option value="Honda">Honda</mat-option>
-          <mat-option value="Hyundai">Hyundai</mat-option>
-          <mat-option value="Jeep">Jeep</mat-option>
-          <mat-option value="Kia">Kia</mat-option>
-          <mat-option value="Land Rover">Land Rover</mat-option>
-          <mat-option value="Mercedes-Benz">Mercedes-Benz</mat-option>
-          <mat-option value="Mitsubishi">Mitsubishi</mat-option>
-          <mat-option value="Nissan">Nissan</mat-option>
-          <mat-option value="Peugeot">Peugeot</mat-option>
-          <mat-option value="Porsche">Porsche</mat-option>
-          <mat-option value="Renault">Renault</mat-option>
-          <mat-option value="Subaru">Subaru</mat-option>
-          <mat-option value="Suzuki">Suzuki</mat-option>
-          <mat-option value="Tesla">Tesla</mat-option>
-          <mat-option value="Toyota">Toyota</mat-option>
-          <mat-option value="Volkswagen">Volkswagen</mat-option>
-          <mat-option value="Volvo">Volvo</mat-option>
-          <mat-option value="Outra">Outra</mat-option>
-        </mat-select>
-        <mat-error *ngIf="veiculoForm.get('marca')?.invalid && veiculoForm.get('marca')?.touched">
-          Marca é obrigatória.
-        </mat-error>
-      </mat-form-field>
+<h2>{{ isEditMode ? 'Editar Veículo' : 'Cadastrar Novo Veículo' }}</h2>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Modelo</mat-label>
-        <input matInput type="text" formControlName="modelo">
-        <mat-error *ngIf="veiculoForm.get('modelo')?.invalid && veiculoForm.get('modelo')?.touched">
-          Modelo é obrigatório.
-        </mat-error>
-      </mat-form-field>
+<form [formGroup]="veiculoForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="marca">Marca:</label>
+    <select id="marca" formControlName="marca">
+      <option value="">Selecione a Marca</option>
+      <option value="Audi">Audi</option>
+      <option value="BMW">BMW</option>
+      <option value="Caoa Chery">Caoa Chery</option>
+      <option value="Chevrolet">Chevrolet</option>
+      <option value="Citroën">Citroën</option>
+      <option value="Fiat">Fiat</option>
+      <option value="Ford">Ford</option>
+      <option value="Honda">Honda</option>
+      <option value="Hyundai">Hyundai</option>
+      <option value="Jeep">Jeep</option>
+      <option value="Kia">Kia</option>
+      <option value="Land Rover">Land Rover</option>
+      <option value="Mercedes-Benz">Mercedes-Benz</option>
+      <option value="Mitsubishi">Mitsubishi</option>
+      <option value="Nissan">Nissan</option>
+      <option value="Peugeot">Peugeot</option>
+      <option value="Porsche">Porsche</option>
+      <option value="Renault">Renault</option>
+      <option value="Subaru">Subaru</option>
+      <option value="Suzuki">Suzuki</option>
+      <option value="Tesla">Tesla</option>
+      <option value="Toyota">Toyota</option>
+      <option value="Volkswagen">Volkswagen</option>
+      <option value="Volvo">Volvo</option>
+      <option value="Outra">Outra</option>
+    </select>
+    <div *ngIf="veiculoForm.get('marca')?.invalid && veiculoForm.get('marca')?.touched" class="error-message">
+      Marca é obrigatória.
+    </div>
+  </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Ano</mat-label>
-        <mat-select formControlName="ano">
-          <mat-option value="">Selecione o Ano</mat-option>
-          <mat-option *ngFor="let ano of anos" [value]="ano">{{ ano }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="veiculoForm.get('ano')?.invalid && veiculoForm.get('ano')?.touched">
-          Ano é obrigatório e deve ser um número válido.
-        </mat-error>
-      </mat-form-field>
+  <div>
+    <label for="modelo">Modelo:</label>
+    <input id="modelo" type="text" formControlName="modelo">
+    <div *ngIf="veiculoForm.get('modelo')?.invalid && veiculoForm.get('modelo')?.touched" class="error-message">
+      Modelo é obrigatório.
+    </div>
+  </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Cor</mat-label>
-        <input matInput type="text" formControlName="cor">
-        <mat-error *ngIf="veiculoForm.get('cor')?.invalid && veiculoForm.get('cor')?.touched">
-          Cor é obrigatória.
-        </mat-error>
-      </mat-form-field>
+  <div>
+    <label for="ano">Ano:</label>
+    <select id="ano" formControlName="ano">
+      <option value="">Selecione o Ano</option>
+      <option *ngFor="let ano of anos" [value]="ano">{{ ano }}</option>
+    </select>
+    <div *ngIf="veiculoForm.get('ano')?.invalid && veiculoForm.get('ano')?.touched" class="error-message">
+      Ano é obrigatório e deve ser um número válido.
+    </div>
+  </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Preço</mat-label>
-        <input matInput type="number" formControlName="preco">
-        <mat-error *ngIf="veiculoForm.get('preco')?.invalid && veiculoForm.get('preco')?.touched">
-          Preço é obrigatório e deve ser um número maior ou igual a zero.
-        </mat-error>
-      </mat-form-field>
+  <div>
+    <label for="cor">Cor:</label>
+    <input id="cor" type="text" formControlName="cor">
+    <div *ngIf="veiculoForm.get('cor')?.invalid && veiculoForm.get('cor')?.touched" class="error-message">
+      Cor é obrigatória.
+    </div>
+  </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Quilometragem</mat-label>
-        <input matInput type="number" formControlName="quilometragem">
-        <mat-error *ngIf="veiculoForm.get('quilometragem')?.invalid && veiculoForm.get('quilometragem')?.touched">
-          Quilometragem é obrigatória e deve ser um número maior ou igual a zero.
-        </mat-error>
-      </mat-form-field>
+  <div>
+    <label for="preco">Preço:</label>
+    <input id="preco" type="number" formControlName="preco">
+    <div *ngIf="veiculoForm.get('preco')?.invalid && veiculoForm.get('preco')?.touched" class="error-message">
+      Preço é obrigatório e deve ser um número maior ou igual a zero.
+    </div>
+  </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Combustível</mat-label>
-        <mat-select formControlName="tipoCombustivel">
-          <mat-option value="">Selecione o Combustível</mat-option>
-          <mat-option value="Gasolina">Gasolina</mat-option>
-          <mat-option value="Etanol">Etanol</mat-option>
-          <mat-option value="Flex">Flex</mat-option>
-          <mat-option value="Diesel">Diesel</mat-option>
-          <mat-option value="Elétrico">Elétrico</mat-option>
-          <mat-option value="Híbrido">Híbrido</mat-option>
-        </mat-select>
-        <mat-error *ngIf="veiculoForm.get('tipoCombustivel')?.invalid && veiculoForm.get('tipoCombustivel')?.touched">
-          Tipo de Combustível é obrigatório.
-        </mat-error>
-      </mat-form-field>
+  <div>
+    <label for="quilometragem">Quilometragem:</label>
+    <input id="quilometragem" type="number" formControlName="quilometragem">
+    <div *ngIf="veiculoForm.get('quilometragem')?.invalid && veiculoForm.get('quilometragem')?.touched" class="error-message">
+      Quilometragem é obrigatória e deve ser um número maior ou igual a zero.
+    </div>
+  </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Câmbio</mat-label>
-        <mat-select formControlName="cambio">
-          <mat-option value="">Selecione o Câmbio</mat-option>
-          <mat-option value="Manual">Manual</mat-option>
-          <mat-option value="Automático">Automático</mat-option>
-          <mat-option value="Automatizado">Automatizado</mat-option>
-          <mat-option value="CVT">CVT</mat-option>
-        </mat-select>
-        <mat-error *ngIf="veiculoForm.get('cambio')?.invalid && veiculoForm.get('cambio')?.touched">
-          Câmbio é obrigatório.
-        </mat-error>
-      </mat-form-field>
+  <div>
+    <label for="tipoCombustivel">Combustível:</label>
+    <select id="tipoCombustivel" formControlName="tipoCombustivel">
+      <option value="">Selecione o Combustível</option>
+      <option value="Gasolina">Gasolina</option>
+      <option value="Etanol">Etanol</option>
+      <option value="Flex">Flex</option>
+      <option value="Diesel">Diesel</option>
+      <option value="Elétrico">Elétrico</option>
+      <option value="Híbrido">Híbrido</option>
+    </select>
+    <div *ngIf="veiculoForm.get('tipoCombustivel')?.invalid && veiculoForm.get('tipoCombustivel')?.touched" class="error-message">
+      Tipo de Combustível é obrigatório.
+    </div>
+  </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Placa</mat-label>
-        <input matInput type="text" formControlName="placa">
-        <mat-error *ngIf="veiculoForm.get('placa')?.invalid && veiculoForm.get('placa')?.touched">
-          Placa é obrigatória e deve seguir o padrão Mercosul (ex: ABC1D23).
-        </mat-error>
-      </mat-form-field>
+  <div>
+    <label for="cambio">Câmbio:</label>
+    <select id="cambio" formControlName="cambio">
+      <option value="">Selecione o Câmbio</option>
+      <option value="Manual">Manual</option>
+      <option value="Automático">Automático</option>
+      <option value="Automatizado">Automatizado</option>
+      <option value="CVT">CVT</option>
+    </select>
+    <div *ngIf="veiculoForm.get('cambio')?.invalid && veiculoForm.get('cambio')?.touched" class="error-message">
+      Câmbio é obrigatório.
+    </div>
+  </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Status</mat-label>
-        <mat-select formControlName="status">
-          <mat-option value="">Selecione um status</mat-option>
-          <mat-option value="Disponível">Disponível</mat-option>
-          <mat-option value="Vendido">Vendido</mat-option>
-          <mat-option value="Reservado">Reservado</mat-option>
-          <mat-option value="Manutenção">Manutenção</mat-option>
-        </mat-select>
-        <mat-error *ngIf="veiculoForm.get('status')?.invalid && veiculoForm.get('status')?.touched">
-          Status é obrigatório.
-        </mat-error>
-      </mat-form-field>
+  <div>
+    <label for="placa">Placa:</label>
+    <input id="placa" type="text" formControlName="placa">
+    <div *ngIf="veiculoForm.get('placa')?.invalid && veiculoForm.get('placa')?.touched" class="error-message">
+      Placa é obrigatória e deve seguir o padrão Mercosul (ex: ABC1D23).
+    </div>
+  </div>
 
-      <mat-form-field appearance="outline" class="full-width-field">
-        <mat-label>Descrição</mat-label>
-        <textarea matInput formControlName="descricao" rows="4"></textarea>
-      </mat-form-field>
+  <div>
+    <label for="status">Status:</label>
+    <select id="status" formControlName="status">
+      <option value="">Selecione um status</option>
+      <option value="Disponível">Disponível</option>
+      <option value="Vendido">Vendido</option>
+      <option value="Reservado">Reservado</option>
+      <option value="Manutenção">Manutenção</option>
+    </select>
+    <div *ngIf="veiculoForm.get('status')?.invalid && veiculoForm.get('status')?.touched" class="error-message">
+      Status é obrigatório.
+    </div>
+  </div>
 
-      <div class="form-buttons">
-        <button mat-raised-button color="primary" type="submit" [disabled]="veiculoForm.invalid">Salvar Veículo</button>
-        <button mat-flat-button color="warn" type="button" (click)="router.navigate(['/veiculos'])">Cancelar</button>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+  <div>
+    <label for="descricao">Descrição:</label>
+    <textarea id="descricao" formControlName="descricao"></textarea>
+  </div>
+
+  <button type="submit" [disabled]="veiculoForm.invalid">Salvar Veículo</button>
+  <button type="button" (click)="router.navigate(['/veiculos'])">Cancelar</button>
+</form>

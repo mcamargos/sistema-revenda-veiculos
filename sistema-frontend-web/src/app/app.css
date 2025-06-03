@@ -1,9 +1,0 @@
-/* Estilo para empurrar elementos em flexbox (usado na mat-toolbar) */
-.spacer {
-    flex: 1 1 auto;
-  }
-  
-  /* Estilo básico para o conteúdo principal */
-  main {
-    padding: 20px;
-  }

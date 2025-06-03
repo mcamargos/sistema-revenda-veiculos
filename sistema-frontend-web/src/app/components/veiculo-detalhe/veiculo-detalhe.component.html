@@ -1,80 +1,22 @@
-<mat-card class="veiculo-detalhe-card">
-    <mat-card-header>
-      <mat-card-title *ngIf="veiculo">Detalhes do Veículo</mat-card-title>
-      <mat-card-subtitle *ngIf="veiculo">{{ veiculo.marca }} {{ veiculo.modelo }}</mat-card-subtitle>
-      <mat-card-title *ngIf="!veiculo">Carregando detalhes do veículo...</mat-card-title>
-    </mat-card-header>
-    <mat-card-content *ngIf="veiculo">
-      <mat-list>
-        <mat-list-item>
-          <mat-icon matListItemIcon>fingerprint</mat-icon>
-          <div matListItemTitle>ID</div>
-          <div matListItemLine>{{ veiculo.id }}</div>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListItemIcon>directions_car</mat-icon>
-          <div matListItemTitle>Marca</div>
-          <div matListItemLine>{{ veiculo.marca }}</div>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListItemIcon>palette</mat-icon>
-          <div matListItemTitle>Modelo</div>
-          <div matListItemLine>{{ veiculo.modelo }}</div>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListItemIcon>calendar_today</mat-icon>
-          <div matListItemTitle>Ano</div>
-          <div matListItemLine>{{ veiculo.ano }}</div>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListItemIcon>color_lens</mat-icon>
-          <div matListItemTitle>Cor</div>
-          <div matListItemLine>{{ veiculo.cor }}</div>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListItemIcon>attach_money</mat-icon>
-          <div matListItemTitle>Preço</div>
-          <div matListItemLine>{{ veiculo.preco | currency:'BRL':'symbol':'1.2-2' }}</div>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListItemIcon>speed</mat-icon>
-          <div matListItemTitle>Quilometragem</div>
-          <div matListItemLine>{{ veiculo.quilometragem }} km</div>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListItemIcon>local_gas_station</mat-icon>
-          <div matListItemTitle>Tipo de Combustível</div>
-          <div matListItemLine>{{ veiculo.tipoCombustivel }}</div>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListItemIcon>compare_arrows</mat-icon>
-          <div matListItemTitle>Câmbio</div>
-          <div matListItemLine>{{ veiculo.cambio }}</div>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListItemIcon>badge</mat-icon>
-          <div matListItemTitle>Placa</div>
-          <div matListItemLine>{{ veiculo.placa }}</div>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListItemIcon>info_outline</mat-icon>
-          <div matListItemTitle>Status</div>
-          <div matListItemLine>{{ veiculo.status }}</div>
-        </mat-list-item>
-        <mat-list-item class="full-width-item">
-          <mat-icon matListItemIcon>description</mat-icon>
-          <div matListItemTitle>Descrição</div>
-          <div matListItemLine class="description-text">{{ veiculo.descricao }}</div>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-flat-button color="primary" (click)="onBack()">
-        <mat-icon>arrow_back</mat-icon> Voltar para a Lista
-      </button>
-    </mat-card-actions>
-  </mat-card>
+<div *ngIf="veiculo">
+    <h2>Detalhes do Veículo: {{ veiculo.marca }} {{ veiculo.modelo }}</h2>
+    
+    <p><strong>ID:</strong> {{ veiculo.id }}</p>
+    <p><strong>Marca:</strong> {{ veiculo.marca }}</p>
+    <p><strong>Modelo:</strong> {{ veiculo.modelo }}</p>
+    <p><strong>Ano:</strong> {{ veiculo.ano }}</p>
+    <p><strong>Cor:</strong> {{ veiculo.cor }}</p>
+    <p><strong>Preço:</strong> {{ veiculo.preco | currency:'BRL':'symbol':'1.2-2' }}</p>
+    <p><strong>Quilometragem:</strong> {{ veiculo.quilometragem }} km</p>
+    <p><strong>Tipo de Combustível:</strong> {{ veiculo.tipoCombustivel }}</p>
+    <p><strong>Câmbio:</strong> {{ veiculo.cambio }}</p>
+    <p><strong>Placa:</strong> {{ veiculo.placa }}</p>
+    <p><strong>Status:</strong> {{ veiculo.status }}</p>
+    <p><strong>Descrição:</strong> {{ veiculo.descricao }}</p>
   
-  <div *ngIf="!veiculo" class="loading-message">
+    <button (click)="onBack()">Voltar para a Lista</button>
+  </div>
+  
+  <div *ngIf="!veiculo">
     <p>Carregando detalhes do veículo...</p>
   </div>

@@ -1,73 +1,37 @@
-<mat-card class="veiculos-card">
-    <mat-card-header>
-      <mat-card-title>Lista de Veículos</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="table-container">
-          <table mat-table [dataSource]="veiculos" class="mat-elevation-z8">
-  
-              <ng-container matColumnDef="id">
-                  <th mat-header-cell *matHeaderCellDef> ID </th>
-                  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-              </ng-container>
-  
-              <ng-container matColumnDef="marca">
-                  <th mat-header-cell *matHeaderCellDef> Marca </th>
-                  <td mat-cell *matCellDef="let element"> {{element.marca}} </td>
-              </ng-container>
-  
-              <ng-container matColumnDef="modelo">
-                  <th mat-header-cell *matHeaderCellDef> Modelo </th>
-                  <td mat-cell *matCellDef="let element"> {{element.modelo}} </td>
-              </ng-container>
-  
-              <ng-container matColumnDef="ano">
-                  <th mat-header-cell *matHeaderCellDef> Ano </th>
-                  <td mat-cell *matCellDef="let element"> {{element.ano}} </td>
-              </ng-container>
-  
-              <ng-container matColumnDef="cor">
-                  <th mat-header-cell *matHeaderCellDef> Cor </th>
-                  <td mat-cell *matCellDef="let element"> {{element.cor}} </td>
-              </ng-container>
-  
-              <ng-container matColumnDef="preco">
-                  <th mat-header-cell *matHeaderCellDef> Preço </th>
-                  <td mat-cell *matCellDef="let element"> {{element.preco | currency:'BRL':'symbol':'1.2-2'}} </td>
-              </ng-container>
-  
-              <ng-container matColumnDef="placa">
-                  <th mat-header-cell *matHeaderCellDef> Placa </th>
-                  <td mat-cell *matCellDef="let element"> {{element.placa}} </td>
-              </ng-container>
-  
-              <ng-container matColumnDef="status">
-                  <th mat-header-cell *matHeaderCellDef> Status </th>
-                  <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-              </ng-container>
-  
-              <ng-container matColumnDef="acoes">
-                  <th mat-header-cell *matHeaderCellDef> Ações </th>
-                  <td mat-cell *matCellDef="let element">
-                      <button mat-icon-button color="primary" [routerLink]="['/veiculos', element.id]" matTooltip="Ver Detalhes">
-                          <mat-icon>info</mat-icon>
-                      </button>
-                      <button mat-icon-button color="accent" (click)="onEdit(element.id)" matTooltip="Editar Veículo">
-                          <mat-icon>edit</mat-icon>
-                      </button>
-                      <button mat-icon-button color="warn" (click)="onDelete(element.id!)" matTooltip="Excluir Veículo">
-                          <mat-icon>delete</mat-icon>
-                      </button>
-                  </td>
-              </ng-container>
-  
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-  
-          <div *ngIf="veiculos.length === 0" class="no-data-message">
-              Nenhum veículo encontrado.
-          </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
+<h2>Lista de Veículos</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Ano</th>
+      <th>Cor</th>
+      <th>Preço</th>
+      <th>Placa</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let veiculo of veiculos">
+      <td>{{ veiculo.id }}</td>
+      <td>{{ veiculo.marca }}</td>
+      <td>{{ veiculo.modelo }}</td>
+      <td>{{ veiculo.ano }}</td>
+      <td>{{ veiculo.cor }}</td>
+      <td>{{ veiculo.preco | currency:'BRL':'symbol':'1.2-2' }}</td>
+      <td>{{ veiculo.placa }}</td>
+      <td>{{ veiculo.status }}</td>
+      <td>
+        <button [routerLink]="['/veiculos', veiculo.id]">Detalhes</button>
+        <button (click)="onEdit(veiculo.id)">Editar</button>
+        <button (click)="onDelete(veiculo.id!)">Excluir</button>
+      </td>
+    </tr>
+    <tr *ngIf="veiculos.length === 0">
+        <td colspan="9">Nenhum veículo encontrado.</td>
+    </tr>
+  </tbody>
+</table>
