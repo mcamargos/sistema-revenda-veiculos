@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/magenta-violet.css';
+
+:root {
+  --mdc-theme-primary: #512DA8; 
+  --mdc-theme-on-primary: #FFFFFF; 
+  --mdc-theme-primary-container: #D1C4E9; 
+  --mdc-theme-on-primary-container: #1A0050;
+
+  /* Paleta Secundária (para contraste, pode ser um roxo mais claro ou um tom complementar) */
+  --mdc-theme-secondary: #7C4DFF; /* Um roxo vibrante */
+  --mdc-theme-on-secondary: #FFFFFF;
+  --mdc-theme-secondary-container: #EDE7F6;
+  --mdc-theme-on-secondary-container: #22005D;
+
+  /* Paleta de Alerta/Perigo */
+  --mdc-theme-error: #B00020;
+  --mdc-theme-on-error: #FFFFFF;
+  --mdc-theme-error-container: #FCD8DA;
+  --mdc-theme-on-error-container: #410002;
+
+  /* Cores de Superfície/Fundo */
+  --mdc-theme-surface: #FFFFFF; /* Fundo padrão de componentes (cards, etc.) */
+  --mdc-theme-on-surface: #201A33; /* Texto sobre a superfície */
+  --mdc-theme-background: #F3E5F5; /* Fundo geral da página (um lilás bem claro) */
+  --mdc-theme-on-background: #201A33; /* Texto sobre o fundo */
+
+  /* Outras cores (ajuste conforme necessário para 'accent' e 'warn' nos botões) */
+  --mdc-ref-palette-error30: #e57373;
+  --mdc-ref-palette-error40: #ef5350;
+  --mdc-ref-palette-error50: #f44336;
+  --mdc-ref-palette-error60: #e53935;
+  --mdc-ref-palette-error70: #d32f2f;
+  --mdc-ref-palette-error80: #c62828;
+}
+
+
+/* Estilos globais para o corpo da página */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--mdc-theme-background); /* Aplica o fundo roxo claro */
+  color: var(--mdc-theme-on-background); /* Cor do texto padrão */
+}
+
+/* Contêiner principal para o conteúdo da aplicação */
+.main-content-container {
+  padding: 20px;
+  max-width: 1000px; /* Reduz um pouco a largura máxima para dar mais sensação de compactação */
+  margin: 20px auto;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Sombra mais forte para um visual mais "elevado" */
+  border-radius: 12px; /* Cantos mais arredondados */
+  background-color: var(--mdc-theme-surface); /* Fundo branco para o conteúdo do card */
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-mdc-table-container {
+  overflow: auto !important; 
+}
+
+.mat-mdc-row:hover {
+  background-color: var(--mdc-theme-primary-container) !important;
+  cursor: pointer;
+}

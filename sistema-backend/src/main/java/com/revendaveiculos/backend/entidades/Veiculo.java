@@ -17,22 +17,18 @@ import java.time.Year;
 @AllArgsConstructor // Anotação do Lombok para gerar construtor com todos os argumentos
 public class Veiculo {
 
-    @Id // Indica que este campo é a chave primária da tabela
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Configura a geração automática do ID pelo banco de dados
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
     private String marca;
     private String modelo;
-    private Integer ano; // Ano pode ser Integer
+    private Integer ano;
     private String cor;
-    private BigDecimal preco; // Usar BigDecimal para valores monetários é uma boa prática
-    private Integer quilometragem;
+    private BigDecimal preco; 
     private String tipoCombustivel;
     private String cambio;
     private String placa;
-    private String status; // Ex: "Disponível", "Vendido", "Reservado"
+    private String status; 
     private String descricao;
-    // private String urlImagemPrincipal; // Podemos adicionar upload de imagens depois
-
-    // Por enquanto, vamos manter simples. Podemos adicionar relacionamentos depois.
 }

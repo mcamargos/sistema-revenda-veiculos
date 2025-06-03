@@ -1,33 +1,84 @@
-div {
+.veiculo-detalhe-card {
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-top: 20px;
-    background-color: #f9f9f9;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    background-color: var(--mdc-theme-surface);
   }
-  h2 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  p {
+  
+  .mat-card-header {
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     margin-bottom: 10px;
-    line-height: 1.5;
   }
-  strong {
-    display: inline-block;
-    width: 150px; /* Ajuste conforme necessário para alinhar */
-    text-align: right;
-    margin-right: 10px;
+  
+  .mat-card-title {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: var(--mdc-theme-on-surface);
   }
-  button {
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  
+  .mat-card-subtitle {
+      color: var(--mdc-theme-on-surface);
+      font-size: 1em;
+      margin-top: 5px;
   }
-  button:hover {
-    background-color: #0056b3;
+  
+  .mat-card-content {
+    padding: 16px;
+  }
+  
+  mat-list {
+    padding: 0;
+  }
+  
+  mat-list-item {
+    height: auto !important; 
+    padding: 10px 0;
+    border-bottom: 1px solid var(--mdc-theme-primary-container); 
+    display: flex; 
+    align-items: flex-start; 
+  }
+  
+  mat-list-item:last-child {
+    border-bottom: none;
+  }
+  
+  mat-list-item .mat-icon {
+    margin-right: 15px; 
+    color: var(--mdc-theme-primary); 
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  div[matListItemTitle] {
+    font-weight: bold;
+    color: var(--mdc-theme-on-surface);
+    flex-basis: 150px; 
+    flex-shrink: 0;
+  }
+  
+  div[matListItemLine] {
+    flex-grow: 1; 
+    color: var(--mdc-theme-on-surface);
+  }
+  
+  .description-text {
+    white-space: pre-wrap; 
+  }
+  
+  .full-width-item {
+    display: block; 
+  }
+  .full-width-item .mat-icon {
+      align-self: flex-start; 
+  }
+  
+  mat-card-actions {
+    padding: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: flex-end;
   }

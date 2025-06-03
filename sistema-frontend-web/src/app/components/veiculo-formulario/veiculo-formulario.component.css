@@ -1,42 +1,50 @@
-.error-message {
-    color: red;
-    font-size: 0.8em;
-    margin-top: 5px;
+.veiculo-form-card {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 700px; 
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
+    border-radius: 12px; 
+    background-color: var(--mdc-theme-surface); 
   }
-  div {
-    margin-bottom: 15px;
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 15px; 
+    padding-top: 10px; 
   }
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  input[type="text"],
-  input[type="number"],
-  textarea,
-  select {
+  
+  mat-form-field {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Garante que padding e border não aumentam a largura total */
   }
-  button {
-    padding: 10px 15px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  
+  .full-width-field {
+    grid-column: 1 / -1; 
   }
-  button[type="submit"] {
-    background-color: #007bff;
-    color: white;
+  
+  textarea[matInput] {
+    min-height: 80px;
+    resize: vertical; 
   }
-  button[type="submit"]:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+  
+  .form-buttons {
+    grid-column: 1 / -1; 
+    justify-content: flex-end; 
+    gap: 15px; 
+    margin-top: 20px;
   }
-  button[type="button"] {
-    background-color: #6c757d;
-    color: white;
+  
+  button[mat-raised-button],
+  button[mat-flat-button] {
+    padding: 8px 16px;
+  }
+  
+
+  @media (max-width: 600px) {
+      .form-grid {
+          grid-template-columns: 1fr; 
+      }
+      .form-buttons {
+          justify-content: center; 
+      }
   }

@@ -1,9 +1,10 @@
-<nav>
-  <a routerLink="/veiculos">Lista de Veículos</a> |
-  <a routerLink="/veiculos/novo">Cadastrar Novo Veículo</a>
-</nav>
+<mat-toolbar color="primary">
+  <span>{{ title }}</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/veiculos">Lista de Veículos</button>
+  <button mat-button routerLink="/veiculos/novo">Cadastrar Novo Veículo</button>
+</mat-toolbar>
 
-<main>
-  <h1>{{ title }}</h1>
+<main class="main-content-container">
   <router-outlet></router-outlet>
 </main>
