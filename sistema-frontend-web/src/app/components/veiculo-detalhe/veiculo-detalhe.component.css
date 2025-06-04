@@ -1,33 +1,117 @@
-div {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-top: 20px;
-    background-color: #f9f9f9;
-  }
-  h2 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  p {
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-  strong {
-    display: inline-block;
-    width: 150px; /* Ajuste conforme necessário para alinhar */
-    text-align: right;
-    margin-right: 10px;
-  }
-  button {
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #0056b3;
-  }
+/* Card principal */
+.veiculo-detail-card {
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+/* Título e subtítulo do card */
+.card-title {
+  color: #673ab7; 
+  padding-bottom: 5px;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 700;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 15px;
+}
+
+.card-subtitle {
+  color: #757575;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.1em;
+}
+
+.mat-mdc-list-item {
+    display: flex !important; 
+    align-items: center !important; 
+    padding: 12px 0 !important; 
+    height: auto !important; 
+    box-sizing: border-box; 
+}
+
+.mat-mdc-list-item .mat-mdc-list-item-icon { 
+  margin-right: 15px;
+  color: #9c27b0;
+  font-size: 28px;
+  flex-shrink: 0; 
+  display: flex; 
+  align-items: center;
+  justify-content: center; 
+}
+
+.mat-mdc-list-item .mat-mdc-list-item-content { 
+  display: flex !important; 
+  align-items: baseline !important; 
+  flex-grow: 1; 
+  padding: 0 !important; 
+}
+
+.item-title {
+  font-weight: 600;
+  color: #424242;
+  min-width: 150px; 
+  text-align: left;
+  padding-right: 10px; 
+  box-sizing: border-box;
+  flex-shrink: 0; 
+}
+
+.item-value {
+  color: #616161;
+  flex-grow: 1; 
+  word-break: break-word; 
+  text-align: left;
+}
+
+.price-value {
+  font-weight: bold;
+  color: #3f51b5;
+  font-size: 1.1em;
+}
+
+mat-divider {
+  border-top-color: #eee;
+  margin: 5px 0;
+}
+
+mat-chip-listbox {
+  display: inline-flex;
+  align-items: center;
+}
+mat-chip-row {
+  font-weight: bold;
+  text-transform: uppercase;
+  min-width: 100px;
+  justify-content: center;
+  height: 28px;
+  padding: 0 8px;
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.detail-actions button {
+  padding: 10px 25px;
+  font-size: 1em;
+}
+
+.no-data-message {
+  text-align: center;
+  padding: 40px;
+  color: #757575;
+  font-style: italic;
+  font-size: 1.2em;
+  margin-top: 20px;
+  background-color: #fff3e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}

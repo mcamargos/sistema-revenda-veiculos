@@ -4,10 +4,29 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { Veiculo, VeiculoService } from '../../services/veiculo.service';
 
+// Importações do Angular Material para componente standalone
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'; 
+
 @Component({
   selector: 'app-veiculo-formulario',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,        // Para o card que envolve o formulário
+    MatInputModule,       // Para input e textarea
+    MatFormFieldModule,   // Para o wrapper dos campos (mat-form-field)
+    MatSelectModule,      // Para os dropdowns
+    MatButtonModule,      // Para os botões
+    MatIconModule,        // Para os ícones nos botões
+    MatSnackBarModule     // Para as notificações
+  ],
   templateUrl: './veiculo-formulario.component.html',
   styleUrl: './veiculo-formulario.component.css'
 })
@@ -15,94 +34,88 @@ export class VeiculoFormularioComponent implements OnInit {
   veiculoForm!: FormGroup;
   isEditMode = false;
   veiculoId: number | null = null;
-  
-  anos: number[] = []; // Array para armazenar os anos dinamicamente
+
+  anos: number[] = [];
 
   constructor(
     private veiculoService: VeiculoService,
-    public router: Router, // 'public' para ser acessível no template para o botão Cancelar
-    private route: ActivatedRoute
+    public router: Router,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar 
   ) { }
 
   ngOnInit(): void {
-    this.gerarAnos(); // Popula o array de anos
+    this.gerarAnos();
 
     this.veiculoForm = new FormGroup({
       marca: new FormControl('', Validators.required),
-      modelo: new FormControl('', Validators.required), // Modelo volta a ser um input de texto
+      modelo: new FormControl('', [Validators.required, Validators.minLength(2)]), // Adicionado minLength
       ano: new FormControl(null, [Validators.required, Validators.min(1950), Validators.max(new Date().getFullYear() + 1)]),
       cor: new FormControl('', Validators.required),
       preco: new FormControl(null, [Validators.required, Validators.min(0)]),
       quilometragem: new FormControl(null, [Validators.required, Validators.min(0)]),
       tipoCombustivel: new FormControl('', Validators.required),
       cambio: new FormControl('', Validators.required),
-      placa: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{3}\d[A-Z]\d{2}$/i)]), // Ex: ABC1D23 (padrão Mercosul)
+      placa: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{3}\d[A-Z]\d{2}$/i)]),
       status: new FormControl('', Validators.required),
       descricao: new FormControl('')
     });
 
-    // Lógica para modo de edição
     this.route.paramMap.subscribe(params => {
       if (params.has('id')) {
         this.isEditMode = true;
-        this.veiculoId = +params.get('id')!; // O '+' converte para número
+        this.veiculoId = +params.get('id')!;
         this.veiculoService.getVeiculoById(this.veiculoId!).subscribe(
           veiculo => {
-            this.veiculoForm.patchValue(veiculo); // Preenche o formulário com os dados do veículo
+            this.veiculoForm.patchValue(veiculo);
           },
           error => {
             console.error('Erro ao buscar veículo para edição:', error);
-            alert('Erro ao carregar veículo para edição. Tente novamente.');
-            this.router.navigate(['/veiculos']); // Volta para a lista se der erro
+            this.snackBar.open('Erro ao carregar veículo para edição. Verifique o console.', 'Fechar', { duration: 5000 });
+            this.router.navigate(['/veiculos']);
           }
         );
       }
     });
   }
 
-  // Método para gerar o array de anos
   gerarAnos(): void {
     const anoAtual = new Date().getFullYear();
-    for (let i = anoAtual + 1; i >= 1950; i--) { // Gerar de anoAtual+1 (para carro futuro) até 1950
+    for (let i = anoAtual + 1; i >= 1950; i--) {
       this.anos.push(i);
     }
   }
-
-  // O método onMarcaChange NÃO EXISTE MAIS AQUI
-  // O getter objectKeys NÃO EXISTE MAIS AQUI
 
   onSubmit(): void {
     if (this.veiculoForm.valid) {
       const veiculo: Veiculo = this.veiculoForm.value;
 
       if (this.isEditMode && this.veiculoId) {
-        // Modo de edição
         this.veiculoService.updateVeiculo(this.veiculoId, veiculo).subscribe(
           () => {
-            alert('Veículo atualizado com sucesso!');
+            this.snackBar.open('Veículo atualizado com sucesso!', 'Fechar', { duration: 3000 });
             this.router.navigate(['/veiculos']);
           },
           error => {
             console.error('Erro ao atualizar veículo:', error);
-            alert('Erro ao atualizar veículo. Verifique o console.');
+            this.snackBar.open('Erro ao atualizar veículo. Verifique o console.', 'Fechar', { duration: 5000 });
           }
         );
       } else {
-        // Modo de cadastro
         this.veiculoService.createVeiculo(veiculo).subscribe(
           () => {
-            alert('Veículo cadastrado com sucesso!');
+            this.snackBar.open('Veículo cadastrado com sucesso!', 'Fechar', { duration: 3000 });
             this.router.navigate(['/veiculos']);
           },
           error => {
             console.error('Erro ao cadastrar veículo:', error);
-            alert('Erro ao cadastrar veículo. Verifique o console.');
+            this.snackBar.open('Erro ao cadastrar veículo. Verifique o console.', 'Fechar', { duration: 5000 });
           }
         );
       }
     } else {
-      alert('Por favor, preencha todos os campos obrigatórios corretamente.');
-      this.veiculoForm.markAllAsTouched(); // Marca todos os campos como "tocados" para exibir validações
+      this.snackBar.open('Por favor, preencha todos os campos obrigatórios corretamente.', 'Fechar', { duration: 5000 });
+      this.veiculoForm.markAllAsTouched();
     }
   }
 }

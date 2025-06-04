@@ -6,10 +6,7 @@ import { VeiculoDetalheComponent } from './components/veiculo-detalhe/veiculo-de
 export const routes: Routes = [
   { path: 'veiculos', component: VeiculoListaComponent },
   { path: 'veiculos/novo', component: VeiculoFormularioComponent },
-  // <<<<<<<<<<<<<<<<< Rota para DETALHES - ATENÇÃO AQUI >>>>>>>>>>>>>>>>>
-  // Esta rota deve vir ANTES da rota de edição com :id, para ser mais específica
   { path: 'veiculos/:id', component: VeiculoDetalheComponent },
-  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   { path: 'veiculos/editar/:id', component: VeiculoFormularioComponent },
   { path: '', redirectTo: '/veiculos', pathMatch: 'full' },
   { path: '**', redirectTo: '/veiculos' }

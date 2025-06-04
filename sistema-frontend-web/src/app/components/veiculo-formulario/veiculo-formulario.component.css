@@ -1,42 +1,74 @@
-.error-message {
-    color: red;
-    font-size: 0.8em;
-    margin-top: 5px;
+.veiculo-form-card {
+  margin: 20px auto;
+  max-width: 800px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.card-title {
+  color: #673ab7; 
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+form {
+  display: flex;
+  flex-direction: column; 
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between; 
+  gap: 20px; 
+  margin-bottom: 15px; 
+}
+
+.form-field-half {
+  flex: 1 1 calc(50% - 10px); 
+  min-width: 250px; 
+}
+
+.form-field-full {
+  width: 100%;
+}
+
+
+mat-error {
+  font-size: 0.75em;
+  color: #f44336; 
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center; 
+  gap: 15px; 
+  margin-top: 30px;
+}
+
+.form-actions button {
+  padding: 10px 25px;
+  font-size: 1em;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column; 
+    gap: 0; 
   }
-  div {
-    margin-bottom: 15px;
+
+  .form-field-half {
+    width: 100%; 
+    margin-bottom: 15px; 
   }
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+
+  .form-field-half:last-child {
+    margin-bottom: 0; 
   }
-  input[type="text"],
-  input[type="number"],
-  textarea,
-  select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Garante que padding e border não aumentam a largura total */
-  }
-  button {
-    padding: 10px 15px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  button[type="submit"] {
-    background-color: #007bff;
-    color: white;
-  }
-  button[type="submit"]:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  button[type="button"] {
-    background-color: #6c757d;
-    color: white;
-  }
+}

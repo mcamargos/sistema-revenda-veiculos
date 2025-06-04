@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router'; 
+import { RouterOutlet } from '@angular/router';
+
+import { MatToolbarModule } from '@angular/material/toolbar'; 
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-root', 
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink], 
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    MatToolbarModule 
+  ],
+  templateUrl: './app.html', 
+  styleUrl: './app.css' 
 })
-export class App {
-  title = 'Sistema de Revenda de Veículos'; 
+export class App { 
+  title = 'Sistema de Gestão de Revenda de Veículos'; 
 }

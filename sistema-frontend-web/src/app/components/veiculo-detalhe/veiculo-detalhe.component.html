@@ -1,22 +1,107 @@
-<div *ngIf="veiculo">
-    <h2>Detalhes do Veículo: {{ veiculo.marca }} {{ veiculo.modelo }}</h2>
-    
-    <p><strong>ID:</strong> {{ veiculo.id }}</p>
-    <p><strong>Marca:</strong> {{ veiculo.marca }}</p>
-    <p><strong>Modelo:</strong> {{ veiculo.modelo }}</p>
-    <p><strong>Ano:</strong> {{ veiculo.ano }}</p>
-    <p><strong>Cor:</strong> {{ veiculo.cor }}</p>
-    <p><strong>Preço:</strong> {{ veiculo.preco | currency:'BRL':'symbol':'1.2-2' }}</p>
-    <p><strong>Quilometragem:</strong> {{ veiculo.quilometragem }} km</p>
-    <p><strong>Tipo de Combustível:</strong> {{ veiculo.tipoCombustivel }}</p>
-    <p><strong>Câmbio:</strong> {{ veiculo.cambio }}</p>
-    <p><strong>Placa:</strong> {{ veiculo.placa }}</p>
-    <p><strong>Status:</strong> {{ veiculo.status }}</p>
-    <p><strong>Descrição:</strong> {{ veiculo.descricao }}</p>
-  
-    <button (click)="onBack()">Voltar para a Lista</button>
-  </div>
-  
-  <div *ngIf="!veiculo">
-    <p>Carregando detalhes do veículo...</p>
-  </div>
+<mat-card *ngIf="veiculo" class="veiculo-detail-card">
+  <mat-card-title class="card-title">{{ veiculo.marca }} {{ veiculo.modelo }} ({{ veiculo.ano }})</mat-card-title>
+  <mat-card-subtitle class="card-subtitle">Detalhes do Veículo</mat-card-subtitle>
+
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>confirmation_number</mat-icon>
+        <div matListItemTitle class="item-title">ID:</div>
+        <div matListItemLine class="item-value">{{ veiculo.id }}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>local_offer</mat-icon>
+        <div matListItemTitle class="item-title">Marca:</div>
+        <div matListItemLine class="item-value">{{ veiculo.marca }}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>directions_car</mat-icon>
+        <div matListItemTitle class="item-title">Modelo:</div>
+        <div matListItemLine class="item-value">{{ veiculo.modelo }}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>calendar_today</mat-icon>
+        <div matListItemTitle class="item-title">Ano:</div>
+        <div matListItemLine class="item-value">{{ veiculo.ano }}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>color_lens</mat-icon>
+        <div matListItemTitle class="item-title">Cor:</div>
+        <div matListItemLine class="item-value">{{ veiculo.cor }}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>attach_money</mat-icon>
+        <div matListItemTitle class="item-title">Preço:</div>
+        <div matListItemLine class="item-value price-value">{{ veiculo.preco | currency:'BRL':'symbol':'1.2-2' }}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>speed</mat-icon>
+        <div matListItemTitle class="item-title">Quilometragem:</div>
+        <div matListItemLine class="item-value">{{ veiculo.quilometragem | number }} km</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>local_gas_station</mat-icon>
+        <div matListItemTitle class="item-title">Tipo de Combustível:</div>
+        <div matListItemLine class="item-value">{{ veiculo.tipoCombustivel }}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>sync_alt</mat-icon>
+        <div matListItemTitle class="item-title">Câmbio:</div>
+        <div matListItemLine class="item-value">{{ veiculo.cambio }}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>vpn_key</mat-icon>
+        <div matListItemTitle class="item-title">Placa:</div>
+        <div matListItemLine class="item-value">{{ veiculo.placa }}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>check_circle</mat-icon>
+        <div matListItemTitle class="item-title">Status:</div>
+        <div matListItemLine class="item-value">
+          <mat-chip-listbox>
+            <mat-chip-row [color]="veiculo.status === 'DISPONIVEL' ? 'accent' : 'warn'">
+              {{ veiculo.status }}
+            </mat-chip-row>
+          </mat-chip-listbox>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item role="listitem">
+        <mat-icon matListItemIcon>description</mat-icon>
+        <div matListItemTitle class="item-title">Descrição:</div>
+        <div matListItemLine class="item-value">{{ veiculo.descricao }}</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+
+  <mat-card-actions class="detail-actions">
+    <button mat-raised-button color="primary" (click)="onBack()">
+      <mat-icon>arrow_back</mat-icon> Voltar para a Lista
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<div *ngIf="!veiculo" class="no-data-message">
+  <p>Carregando detalhes do veículo...</p>
+</div>

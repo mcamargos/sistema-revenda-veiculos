@@ -1,37 +1,86 @@
-<h2>Lista de Veículos</h2>
+<mat-card class="veiculo-list-card">
+  <mat-card-header>
+    <mat-card-title class="card-title">Lista de Veículos</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-actions">
+      <button mat-raised-button color="primary" routerLink="/veiculos/novo">
+        <mat-icon>add</mat-icon> Adicionar Novo Veículo
+      </button>
+    </div>
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Marca</th>
-      <th>Modelo</th>
-      <th>Ano</th>
-      <th>Cor</th>
-      <th>Preço</th>
-      <th>Placa</th>
-      <th>Status</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let veiculo of veiculos">
-      <td>{{ veiculo.id }}</td>
-      <td>{{ veiculo.marca }}</td>
-      <td>{{ veiculo.modelo }}</td>
-      <td>{{ veiculo.ano }}</td>
-      <td>{{ veiculo.cor }}</td>
-      <td>{{ veiculo.preco | currency:'BRL':'symbol':'1.2-2' }}</td>
-      <td>{{ veiculo.placa }}</td>
-      <td>{{ veiculo.status }}</td>
-      <td>
-        <button [routerLink]="['/veiculos', veiculo.id]">Detalhes</button>
-        <button (click)="onEdit(veiculo.id)">Editar</button>
-        <button (click)="onDelete(veiculo.id!)">Excluir</button>
-      </td>
-    </tr>
-    <tr *ngIf="veiculos.length === 0">
-        <td colspan="9">Nenhum veículo encontrado.</td>
-    </tr>
-  </tbody>
-</table>
+    <div class="table-container mat-elevation-z2">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let veiculo"> {{veiculo.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="marca">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Marca </th>
+          <td mat-cell *matCellDef="let veiculo"> {{veiculo.marca}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modelo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Modelo </th>
+          <td mat-cell *matCellDef="let veiculo"> {{veiculo.modelo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ano">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Ano </th>
+          <td mat-cell *matCellDef="let veiculo"> {{veiculo.ano}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cor">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cor </th>
+          <td mat-cell *matCellDef="let veiculo"> {{veiculo.cor}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="preco">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Preço </th>
+          <td mat-cell *matCellDef="let veiculo"> {{veiculo.preco | currency:'BRL':'symbol'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="placa">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Placa </th>
+          <td mat-cell *matCellDef="let veiculo"> {{veiculo.placa}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let veiculo">
+            <mat-chip-listbox>
+              <mat-chip-row [color]="getStatusColor(veiculo.status)" class="status-chip">
+                {{ veiculo.status }}
+              </mat-chip-row>
+            </mat-chip-listbox>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td mat-cell *matCellDef="let veiculo">
+            <button mat-icon-button color="primary" [routerLink]="['/veiculos', veiculo.id]">
+              <mat-icon>info</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="onEdit(veiculo.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="onDelete(veiculo.id!)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell no-data-message" colspan="9">Nenhum veículo encontrado.</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
