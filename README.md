@@ -7,13 +7,13 @@
 [![Database](https://img.shields.io/badge/Database-PostgreSQL-blue?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)](LICENSE)
 
-Um sistema completo de gestão para revenda de veículos, focado em uma interface de usuário moderna e uma arquitetura de backend segura. Este projeto demonstra a construção de uma aplicação Full-Stack robusta e escalável, ideal para gerenciamento de estoque e otimização de processos de venda.
+Um sistema completo de gestão para revenda de veículos, focado em uma interface de usuário moderna. Este projeto demonstra a construção de uma aplicação Full-Stack robusta e escalável, ideal para gerenciamento de estoque e otimização de processos de venda.
 
 ## ✨ Funcionalidades Principais
 
 ### Backend (Spring Boot)
 * **Gerenciamento Completo de Veículos (CRUD):** Permite o cadastro, listagem, edição e exclusão de veículos no sistema.
-* **Estrutura de Segurança Implementada:** Base sólida para autenticação e autorização com JWT (JSON Web Tokens). Inclui definições de usuários, perfis (roles) e endpoints de `signup` (registro) e `signin` (login) prontos para integração.
+* **Estrutura de Segurança Implementada:** Base sólida para autenticação e autorização com JWT (JSON Web Tokens). Inclui definições de usuários, perfis (roles) e endpoints de `signup` (registro) e `signin` (login) prontos para integração. (EM DESENVOLVIMENTO)
 * **APIs RESTful:** Comunicação clara e eficiente entre o backend e o frontend, seguindo os princípios REST.
 
 ### Frontend Web (Angular)
@@ -34,17 +34,14 @@ Este projeto foi construído utilizando as seguintes tecnologias e ferramentas:
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-F2F4F7?style=for-the-badge&logo=spring-boot)](https://spring.io/projects/spring-boot)
 [![Spring Data JPA](https://img.shields.io/badge/Spring_Data_JPA-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-data-jpa)
-[![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=spring-security)](https://spring.io/projects/spring-security)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)](https://maven.apache.org/)
 
 * **[Java 17](https://www.java.com/):** Linguagem de programação principal.
 * **[Spring Boot 3.5.0](https://spring.io/projects/spring-boot):** Microframework para desenvolvimento rápido de aplicações Java.
     * **Spring Data JPA:** Simplifica o acesso e manipulação de dados com bancos de dados relacionais.
-    * **Spring Security:** Framework de segurança para autenticação e autorização robustas.
     * **Lombok:** Ferramenta para reduzir o código boilerplate em classes Java.
     * **Hibernate Validator:** Implementação de validação de beans (JSR 380).
-    * **JJWT:** Biblioteca para trabalhar com JSON Web Tokens.
 * **[PostgreSQL](https://www.postgresql.org/):** Sistema de gerenciamento de banco de dados relacional.
 * **[Maven](https://maven.apache.org/):** Ferramenta de automação de build e gerenciamento de dependências.
 
